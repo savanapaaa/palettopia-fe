@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  @apply max-w-screen overflow-x-hidden;
+}
+
+* {
+  @apply box-border;
+}
