@@ -41,7 +41,7 @@ export default function RegisterPage() {
     }
 
     if (formData.password.length < 6) {
-      toast.error('Password minimal 6 karakter!');
+      toast.error('Password minimal 8 karakter!');
       return;
     }
     try {
@@ -142,7 +142,7 @@ export default function RegisterPage() {
                     id="password"
                     name="password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Minimal 6 karakter"
+                    placeholder="Minimal 8 karakter"
                     value={formData.password}
                     onChange={handleChange}
                     className="border-purple-200 focus:border-purple-400 pr-10"

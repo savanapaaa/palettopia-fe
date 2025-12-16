@@ -9,13 +9,6 @@ import AdminNavbar from './AdminNavbar';
 import { ArrowLeft, Upload, Save, Loader2 } from 'lucide-react';
 import { toast } from "sonner";
 import api, { getCsrfCookie, getImageUrl } from '../services/api';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select.tsx';
 
 export default function AdminProductFormPage() {
   const navigate = useNavigate();
@@ -26,7 +19,10 @@ export default function AdminProductFormPage() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
-    palette_category: '',
+    category: '',
+    price: 0,
+    stock: 0,
+    palettes: [] as string[], // Multiple palette selection
     description: '',
     image: null as File | null,
   });
@@ -49,7 +45,10 @@ export default function AdminProductFormPage() {
       if (product) {
         setFormData({
           name: product.name,
-          palette_category: product.palette_category,
+          category: product.category || '',
+          price: typeof product.price === 'string' ? parseFloat(product.price) : (product.price || 0),
+          stock: product.stock || 0,
+          palettes: product.palettes?.map((p: any) => p.palette_name) || (product.palette_category ? [product.palette_category] : []),
           description: product.description || '',
           image: null
         });
@@ -94,8 +93,8 @@ export default function AdminProductFormPage() {
     e.preventDefault();
 
     // Validasi
-    if (!formData.name || !formData.palette_category) {
-      toast.error('Nama dan kategori palette wajib diisi!');
+    if (!formData.name || !formData.category || formData.palettes.length === 0 || !formData.price || !formData.stock) {
+      toast.error('Nama, kategori, palet warna, harga, dan stok wajib diisi!');
       return;
     }
 
@@ -105,7 +104,14 @@ export default function AdminProductFormPage() {
 
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
-      formDataToSend.append('palette_category', formData.palette_category);
+      formDataToSend.append('category', formData.category);
+      formDataToSend.append('price', formData.price.toString());
+      formDataToSend.append('stock', formData.stock.toString());
+      // Send palettes as array or first palette as palette_category
+      formDataToSend.append('palette_category', formData.palettes[0] || '');
+      formData.palettes.forEach(palette => {
+        formDataToSend.append('palettes[]', palette);
+      });
       if (formData.description) {
         formDataToSend.append('description', formData.description);
       }
@@ -184,26 +190,48 @@ export default function AdminProductFormPage() {
                   />
                 </div>
 
-                {/* Kategori Palette */}
-                <div className="space-y-2 relative">
-                  <Label htmlFor="palette_category">
-                    Kategori Palette <span className="text-red-500">*</span>
+                {/* Kategori Produk */}
+                <div className="space-y-2">
+                  <Label htmlFor="category">
+                    Kategori <span className="text-red-500">*</span>
                   </Label>
-                  <Select 
-                    value={formData.palette_category} 
-                    onValueChange={(value) => handleInputChange('palette_category', value)}
-                  >
-                    <SelectTrigger className="border-purple-200 focus:border-purple-400 bg-white">
-                      <SelectValue placeholder="Pilih kategori palette" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      {paletteCategories.map((cat) => (
-                        <SelectItem key={cat.value} value={cat.value}>
-                          {cat.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    id="category"
+                    placeholder="Pilih Kategori"
+                    value={formData.category}
+                    onChange={(e) => handleInputChange('category', e.target.value)}
+                    className="border-purple-200 focus:border-purple-400"
+                  />
+                </div>
+
+                {/* Harga & Stok */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="price">
+                      Harga (Rp) <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="price"
+                      type="number"
+                      placeholder="249000"
+                      value={formData.price}
+                      onChange={(e) => handleInputChange('price', e.target.value)}
+                      className="border-purple-200 focus:border-purple-400"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="stock">
+                      Stok <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="stock"
+                      type="number"
+                      placeholder="24"
+                      value={formData.stock}
+                      onChange={(e) => handleInputChange('stock', e.target.value)}
+                      className="border-purple-200 focus:border-purple-400"
+                    />
+                  </div>
                 </div>
 
                 {/* Deskripsi */}
@@ -211,7 +239,7 @@ export default function AdminProductFormPage() {
                   <Label htmlFor="description">Deskripsi Produk</Label>
                   <Textarea
                     id="description"
-                    placeholder="Jelaskan detail produk..."
+                    placeholder="Jelaskan detail produk, bahan, ukuran, dll"
                     value={formData.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     rows={4}
@@ -235,7 +263,7 @@ export default function AdminProductFormPage() {
                       <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                     )}
                     <p className="text-sm text-gray-600 mb-2">
-                      {formData.image ? formData.image.name : imagePreview ? 'Gambar saat ini' : 'Klik untuk upload gambar'}
+                      {formData.image ? formData.image.name : imagePreview ? 'Gambar saat ini' : 'Klik untuk upload gambar atau drag & drop'}
                     </p>
                     <p className="text-xs text-gray-500 mb-4">
                       PNG, JPG, JPEG, GIF hingga 10MB
@@ -251,10 +279,46 @@ export default function AdminProductFormPage() {
                       type="button"
                       variant="outline"
                       onClick={() => document.getElementById('image')?.click()}
-                      className="border-purple-300 text-purple-600"
+                      className="border-purple-300 text-purple-600 hover:bg-purple-50"
                     >
                       Pilih Gambar
                     </Button>
+                  </div>
+                </div>
+
+                {/* Asosiasi Palet Warna */}
+                <div className="space-y-3">
+                  <Label>
+                    Asosiasi Palet Warna <span className="text-red-500">*</span>
+                  </Label>
+                  <p className="text-sm text-gray-500">Pilih palet warna yang sesuai dengan produk ini</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {paletteCategories.map((cat) => (
+                      <div key={cat.value} className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          id={cat.value}
+                          checked={formData.palettes.includes(cat.value)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setFormData({
+                                ...formData,
+                                palettes: [...formData.palettes, cat.value]
+                              });
+                            } else {
+                              setFormData({
+                                ...formData,
+                                palettes: formData.palettes.filter(p => p !== cat.value)
+                              });
+                            }
+                          }}
+                          className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                        />
+                        <label htmlFor={cat.value} className="text-sm font-medium text-gray-700 cursor-pointer">
+                          {cat.label}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </CardContent>

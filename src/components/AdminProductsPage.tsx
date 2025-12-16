@@ -32,23 +32,28 @@ import api, { getCsrfCookie, getImageUrl } from '../services/api';
 interface Product {
   id: number;
   name: string;
+  category: string;
+  price: string | number;
+  stock: number;
+  brand?: string;
   image_url: string | null;
   palette_category: string;
-  description: string;
+  palettes?: { palette_name: string }[];
+  description?: string;
   user?: {
     id: number;
     name: string;
     email: string;
   };
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
-interface ProductsResponse {
-  current_page: number;
-  data: Product[];
-  per_page: number;
-  total: number;
+interface Stats {
+  total_products: number;
+  total_stock: number;
+  total_categories: number;
+  total_palettes: number;
 }
 
 export default function AdminProductsPage() {
@@ -56,7 +61,12 @@ export default function AdminProductsPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPalette, setSelectedPalette] = useState<string>('all');
-  const [totalProducts, setTotalProducts] = useState(0);
+  const [stats, setStats] = useState<Stats>({
+    total_products: 0,
+    total_stock: 0,
+    total_categories: 0,
+    total_palettes: 0,
+  });
 
   useEffect(() => {
     fetchProducts();
@@ -79,13 +89,18 @@ export default function AdminProductsPage() {
       const response = await api.get(url);
       console.log('📦 Products from backend:', response.data);
       
-      const productsData = response.data.data || response.data;
-      if (productsData.data) {
-        setProducts(productsData.data);
-        setTotalProducts(productsData.total);
-      } else if (Array.isArray(productsData)) {
-        setProducts(productsData);
-        setTotalProducts(productsData.length);
+      // Backend format: { success: true, data: { data: [...], current_page, ... }, stats: {...} }
+      const responseData = response.data;
+      
+      // Parse products
+      if (responseData.data) {
+        const productsArray = responseData.data.data || responseData.data;
+        setProducts(Array.isArray(productsArray) ? productsArray : []);
+      }
+      
+      // Parse stats
+      if (responseData.stats) {
+        setStats(responseData.stats);
       }
     } catch (error: any) {
       console.error('Error fetching products:', error);
@@ -100,7 +115,7 @@ export default function AdminProductsPage() {
       await getCsrfCookie();
       await api.delete(`/admin/products/${id}`);
       toast.success('Produk berhasil dihapus');
-      fetchProducts(); // Refresh list
+      fetchProducts();
     } catch (error: any) {
       console.error('Error deleting product:', error);
       toast.error('Gagal menghapus produk');
@@ -126,7 +141,7 @@ export default function AdminProductsPage() {
             <div>
               <h1 className="text-4xl mb-2">Kelola Produk</h1>
               <p className="text-xl text-gray-600">
-                Tambah, ubah, atau hapus produk fashion byneera.id
+                Tambah, ubah, atau hapus produk byneera.id
               </p>
             </div>
             <Link to="/admin/products/add">
@@ -138,17 +153,29 @@ export default function AdminProductsPage() {
           </div>
 
           {/* Stats */}
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div className="grid md:grid-cols-4 gap-4 mb-6">
             <Card className="border-2 border-purple-100">
               <CardContent className="pt-6">
-                <p className="text-2xl mb-1">{totalProducts}</p>
+                <p className="text-2xl font-bold mb-1">{stats.total_products}</p>
                 <p className="text-sm text-gray-600">Total Produk</p>
               </CardContent>
             </Card>
             <Card className="border-2 border-purple-100">
               <CardContent className="pt-6">
-                <p className="text-2xl mb-1">4</p>
-                <p className="text-sm text-gray-600">Kategori Palette</p>
+                <p className="text-2xl font-bold mb-1">{stats.total_stock}</p>
+                <p className="text-sm text-gray-600">Total Stok</p>
+              </CardContent>
+            </Card>
+            <Card className="border-2 border-purple-100">
+              <CardContent className="pt-6">
+                <p className="text-2xl font-bold mb-1">{stats.total_categories}</p>
+                <p className="text-sm text-gray-600">Kategori</p>
+              </CardContent>
+            </Card>
+            <Card className="border-2 border-purple-100">
+              <CardContent className="pt-6">
+                <p className="text-2xl font-bold mb-1">{stats.total_palettes}</p>
+                <p className="text-sm text-gray-600">Palet Warna</p>
               </CardContent>
             </Card>
           </div>
@@ -160,7 +187,7 @@ export default function AdminProductsPage() {
                 <div className="relative">
                   <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                   <Input
-                    placeholder="Cari produk berdasarkan nama..."
+                    placeholder="Cari produk berdasarkan nama atau kategori..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 border-purple-200 focus:border-purple-400"
@@ -190,7 +217,7 @@ export default function AdminProductsPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Package className="w-5 h-5" />
-                Daftar Produk ({products.length})
+                Daftar Produk
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -206,8 +233,10 @@ export default function AdminProductsPage() {
                       <TableRow>
                         <TableHead>Gambar</TableHead>
                         <TableHead>Nama Produk</TableHead>
-                        <TableHead>Palette</TableHead>
-                        <TableHead>Deskripsi</TableHead>
+                        <TableHead>Kategori</TableHead>
+                        <TableHead>Harga</TableHead>
+                        <TableHead>Palet warna</TableHead>
+                        <TableHead>Stok</TableHead>
                         <TableHead className="text-right">Aksi</TableHead>
                       </TableRow>
                     </TableHeader>
@@ -227,19 +256,40 @@ export default function AdminProductsPage() {
                               </div>
                             )}
                           </TableCell>
-                          <TableCell className="font-medium max-w-xs">
-                            <div className="line-clamp-2">{product.name}</div>
+                          <TableCell className="font-medium">
+                            {product.name}
                           </TableCell>
                           <TableCell>
-                            <Badge className="bg-gradient-to-r from-pink-500 to-purple-600 capitalize">
-                              {product.palette_category}
-                            </Badge>
+                            <span className="text-sm">{product.category || '-'}</span>
                           </TableCell>
-                          <TableCell className="max-w-md">
-                            <div className="line-clamp-2 text-sm text-gray-600">
-                              {product.description || '-'}
+                          <TableCell>
+                            <span className="font-medium">
+                              Rp {typeof product.price === 'string' 
+                                ? parseFloat(product.price).toLocaleString('id-ID')
+                                : product.price?.toLocaleString('id-ID') || '0'}
+                            </span>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex gap-1 flex-wrap">
+                              {product.palettes && product.palettes.length > 0 ? (
+                                product.palettes.map((p, idx) => (
+                                  <Badge 
+                                    key={idx} 
+                                    className="bg-gradient-to-r from-pink-500 to-purple-600 capitalize text-xs"
+                                  >
+                                    {p.palette_name}
+                                  </Badge>
+                                ))
+                              ) : (
+                                <Badge className="bg-gradient-to-r from-pink-500 to-purple-600 capitalize text-xs">
+                                  {product.palette_category}
+                                </Badge>
+                              )}
                             </div>
-                              </TableCell>
+                          </TableCell>
+                          <TableCell>
+                            <span className="font-medium">{product.stock || 0}</span>
+                          </TableCell>
                           <TableCell className="text-right">
                             <div className="flex justify-end gap-2">
                               <Link to={`/admin/products/edit/${product.id}`}>
@@ -286,7 +336,7 @@ export default function AdminProductsPage() {
                     </TableBody>
                   </Table>
 
-                      {products.length === 0 && (
+                  {products.length === 0 && (
                     <div className="text-center py-12">
                       <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                       <p className="text-gray-600">Tidak ada produk yang ditemukan</p>
