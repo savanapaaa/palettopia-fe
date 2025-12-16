@@ -18,7 +18,7 @@ export default function DashboardPage() {
         <div className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl p-8 text-white mb-8">
           <div className="flex items-center gap-3 mb-4">
             <Sparkles className="w-8 h-8" />
-            <h1 className="text-4xl">Selamat Datang, {user?.full_name}!</h1>
+            <h1 className="text-4xl">Selamat Datang, {user?.name}!</h1>
           </div>
           <p className="text-xl opacity-90">
             Siap menemukan palet warna yang sempurna untuk Anda hari ini?

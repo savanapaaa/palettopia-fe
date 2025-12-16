@@ -66,10 +66,10 @@ export default function AnalysisPage() {
   try {
     setIsAnalyzing(true);
 
-    // 🔥 WAJIB: Ambil CSRF token dulu
+    // Ambil CSRF token dulu
     await getCsrfCookie();
 
-    // 🔹 STEP 1: Upload foto ke backend
+    // STEP 1: Upload foto ke backend
     toast.info('Mengunggah foto...');
     
     // Convert base64 to blob/file

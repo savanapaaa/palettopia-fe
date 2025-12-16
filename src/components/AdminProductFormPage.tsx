@@ -58,7 +58,7 @@ export default function AdminProductFormPage() {
         }
       }
     } catch (error: any) {
-      console.error('❌ Error fetching product:', error);
+      console.error('Error fetching product:', error);
       toast.error('Gagal memuat data produk');
     } finally {
       setLoading(false);
@@ -130,7 +130,7 @@ export default function AdminProductFormPage() {
 
       navigate('/admin/products');
     } catch (error: any) {
-      console.error('❌ Error saving product:', error);
+      console.error('Error saving product:', error);
       const errorMsg = error.response?.data?.message || 'Gagal menyimpan produk';
       toast.error(errorMsg);
     } finally {
@@ -185,7 +185,7 @@ export default function AdminProductFormPage() {
                 </div>
 
                 {/* Kategori Palette */}
-                <div className="space-y-2">
+                <div className="space-y-2 relative">
                   <Label htmlFor="palette_category">
                     Kategori Palette <span className="text-red-500">*</span>
                   </Label>
@@ -193,17 +193,17 @@ export default function AdminProductFormPage() {
                     value={formData.palette_category} 
                     onValueChange={(value) => handleInputChange('palette_category', value)}
                   >
-                    <SelectTrigger className="border-purple-200 focus:border-purple-400">
+                    <SelectTrigger className="border-purple-200 focus:border-purple-400 bg-white">
                       <SelectValue placeholder="Pilih kategori palette" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       {paletteCategories.map((cat) => (
                         <SelectItem key={cat.value} value={cat.value}>
                           {cat.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Deskripsi */}

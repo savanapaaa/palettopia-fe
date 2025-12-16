@@ -52,7 +52,7 @@ export default function ProfilePage() {
   const [historyList, setHistoryList] = useState<AnalysisHistory[]>([]);
   const [selectedHistory, setSelectedHistory] = useState<AnalysisHistory | null>(null);
 
-  // 🔥 Fetch profile dari backend
+  // Fetch profile dari backend
   useEffect(() => {
     fetchProfile();
     fetchHistory();
@@ -62,12 +62,12 @@ export default function ProfilePage() {
     try {
       await getCsrfCookie();
       const response = await api.get('/profile');
-      console.log('📥 Profile from backend:', response.data);
+      console.log('Profile from backend:', response.data);
       
       const profile = response.data.data || response.data;
       setProfileData(profile);
     } catch (error: any) {
-      console.error('❌ Error fetching profile:', error);
+      console.error('Error fetching profile:', error);
       toast.error('Gagal memuat profil');
     } finally {
       setLoading(false);
@@ -79,10 +79,10 @@ export default function ProfilePage() {
       await getCsrfCookie();
       const response = await api.get('/history');
       const historyData = Array.isArray(response.data) ? response.data : response.data.data || [];
-      console.log('📥 History data:', historyData);
+      console.log('History data:', historyData);
       setHistoryList(historyData);
     } catch (error: any) {
-      console.error('❌ Error fetching history:', error);
+      console.error('Error fetching history:', error);
     }
   };
 
@@ -98,7 +98,7 @@ export default function ProfilePage() {
         toast.success('Profil berhasil diperbarui');
         fetchProfile(); // Refresh data
       } catch (error: any) {
-        console.error('❌ Error updating profile:', error);
+        console.error('Error updating profile:', error);
         toast.error(error.response?.data?.message || 'Gagal memperbarui profil');
         return; // Jangan toggle editing jika gagal
       }
@@ -118,7 +118,7 @@ export default function ProfilePage() {
       toast.success('Riwayat berhasil dihapus');
       fetchProfile(); // Refresh statistics
     } catch (error: any) {
-      console.error('❌ Error deleting history:', error);
+      console.error('Error deleting history:', error);
       toast.error('Gagal menghapus riwayat');
     }
   };

@@ -140,7 +140,7 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [selectedPalette, setSelectedPalette] = useState<string>('all');
 
-  // 🔥 Fetch products dari backend
+  // Fetch products dari backend
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -149,13 +149,13 @@ export default function CatalogPage() {
     try {
       setLoading(true);
       const response = await api.get('/products');
-      console.log('📥 Products from backend:', response.data);
+      console.log('Products from backend:', response.data);
       
       // Backend bisa return array langsung atau wrapped dalam object
       const productsData = Array.isArray(response.data) ? response.data : response.data.data || [];
       setProducts(productsData);
     } catch (error: any) {
-      console.error('❌ Error fetching products:', error);
+      console.error('Error fetching products:', error);
       toast.error('Gagal memuat katalog produk');
       // Fallback ke dummy data jika backend error
       setProducts([]);

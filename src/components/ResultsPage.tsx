@@ -1,82 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card.tsx';
 import { Button } from './ui/button.tsx';
 import { Badge } from './ui/badge.tsx';
 import DashboardNavbar from './DashboardNavbar';
-import { Sparkles, ShoppingBag, CheckCircle, ArrowRight, ExternalLink } from 'lucide-react';
+import { Sparkles, ShoppingBag, CheckCircle, ArrowRight, ExternalLink, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ImageWithFallback } from './Fallback/ImageGirlFallback.tsx';
-import { getImageUrl } from '../services/api';
-
-// Mock data produk
-const mockProducts = [
-  {
-    id: 1,
-    name: 'Dress Terracotta Elegant',
-    price: 'Rp 450.000',
-    image: 'https://images.unsplash.com/photo-1745695894760-600be9c8c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGZhc2hpb24lMjBkcmVzc3xlbnwxfHx8fDE3NjIyMTY3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    color: 'Terracotta'
-  },
-  {
-    id: 2,
-    name: 'Blouse Mustard Premium',
-    price: 'Rp 350.000',
-    image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    color: 'Mustard'
-  },
-  {
-    id: 3,
-    name: 'Hijab Olive Green',
-    price: 'Rp 150.000',
-    image: 'https://images.unsplash.com/photo-1569388330292-79cc1ec67270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzYyMjU1NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    color: 'Olive Green'
-  },
-  {
-    id: 4,
-    name: 'Tunik Rust Casual',
-    price: 'Rp 380.000',
-    image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    color: 'Rust'
-  },
-  {
-    id: 5,
-    name: 'Cardigan Caramel',
-    price: 'Rp 420.000',
-    image: 'https://images.unsplash.com/photo-1745695894760-600be9c8c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGZhc2hpb24lMjBkcmVzc3xlbnwxfHx8fDE3NjIyMTY3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    color: 'Caramel'
-  },
-  {
-    id: 6,
-    name: 'Set Burgundy Formal',
-    price: 'Rp 650.000',
-    image: 'https://images.unsplash.com/photo-1569388330292-79cc1ec67270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzYyMjU1NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    color: 'Burgundy'
-  }
-];
+import api, { getCsrfCookie, getImageUrl } from '../services/api';
 
 export default function ResultsPage() {
   const location = useLocation();
   
-  // 🔥 Ambil data dari backend (dari navigate state)
+  // Ambil data dari backend (dari navigate state)
   const uploadedImage = location.state?.image;
   const palette = location.state?.palette || 'Tidak Terdeteksi';
   const explanation = location.state?.explanation || 'Tidak ada penjelasan';
   const colors = location.state?.colors || [];
   const undertone = location.state?.undertone || '';
   const recommendations = location.state?.recommendations || [];
-  
+
   const [showProducts, setShowProducts] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [products, setProducts] = useState<any[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(false);
 
   // Debug: lihat data yang diterima
-  console.log('📥 Data diterima di ResultsPage:', {
+  console.log('Data diterima di ResultsPage:', {
     palette,
     explanation,
     colors,
     undertone,
     recommendations
   });
+
+  // Fetch products from backend when showProducts is true
+  useEffect(() => {
+    if (showProducts && palette && palette !== 'Tidak Terdeteksi') {
+      fetchProducts();
+    }
+  }, [showProducts, palette]);
+
+  const fetchProducts = async () => {
+    try {
+      setLoadingProducts(true);
+      await getCsrfCookie();
+      
+      // Use palette_category from analysis result
+      const paletteCategory = palette.toLowerCase();
+      const response = await api.get(`/products?palette_category=${encodeURIComponent(paletteCategory)}`);
+      
+      console.log('Products from backend:', response.data);
+      const productsData = Array.isArray(response.data) ? response.data : response.data.data || [];
+      setProducts(productsData);
+    } catch (error: any) {
+      console.error('Error fetching products:', error);
+      toast.error('Gagal memuat produk rekomendasi');
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
 
   const handleShowProducts = () => {
     setShowProducts(true);
@@ -254,44 +237,56 @@ export default function ResultsPage() {
                 </Link>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                {mockProducts.map((product) => (
-                  <Card key={product.id} className="border-2 border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all overflow-hidden">
-                    <div className="relative h-64">
-                      <ImageWithFallback
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <Badge className="absolute top-3 right-3 bg-white text-purple-600">
-                        {product.color}
-                      </Badge>
-                    </div>
-                    <CardContent className="pt-4">
-                      <h3 className="mb-2">{product.name}</h3>
-                      <p className="text-purple-600 mb-4">{product.price}</p>
-                      <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
-                        Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              {/* Saved Notification */}
-              {saved && (
-                <Card className="border-2 border-green-200 bg-green-50">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-3 text-green-700">
-                      <CheckCircle className="w-6 h-6" />
-                      <div>
-                        <p>Hasil analisis ini telah tersimpan di <Link to="/dashboard/riwayat" className="underline hover:text-green-900">Riwayat Analisis</Link> Anda</p>
+              {loadingProducts ? (
+                <div className="col-span-full flex justify-center items-center py-12">
+                  <Loader2 className="animate-spin h-8 w-8 text-purple-600" />
+                  <span className="ml-3 text-gray-600">Memuat produk...</span>
+                </div>
+              ) : products.length === 0 ? (
+                <div className="col-span-full text-center py-12">
+                  <ShoppingBag className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                  <p className="text-gray-500">Belum ada produk untuk kategori ini.</p>
+                </div>
+              ) : (
+                <div className="grid md:grid-cols-3 gap-6">
+                  {products.map((product) => (
+                    <Card key={product.id} className="border-2 border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all overflow-hidden">
+                      <div className="relative h-64">
+                        <img
+                          src={getImageUrl(product.image_url)}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
+                        <Badge className="absolute top-3 right-3 bg-white text-purple-600">
+                          {product.palette_category}
+                        </Badge>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <CardContent className="pt-4">
+                        <h3 className="mb-2">{product.name}</h3>
+                        <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
+                          Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               )}
             </div>
+          )}
+
+          {/* Saved Notification */}
+          {saved && (
+            <Card className="border-2 border-green-200 bg-green-50">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3 text-green-700">
+                  <CheckCircle className="w-6 h-6" />
+                  <div>
+                    <p>Hasil analisis ini telah tersimpan di <Link to="/dashboard/riwayat" className="underline hover:text-green-900">Riwayat Analisis</Link> Anda</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           )}
 
           {/* Action Buttons */}

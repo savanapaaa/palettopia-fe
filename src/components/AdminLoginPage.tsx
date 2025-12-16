@@ -27,44 +27,38 @@ export default function AdminLoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validasi
+
     if (!formData.email || !formData.password) {
       toast.error('Email dan password harus diisi!');
       return;
     }
 
     try {
-      // 🔥 WAJIB: Ambil CSRF token dulu
       await getCsrfCookie();
 
-      // BARU kemudian login
       const loginData = {
         email: formData.email,
         password: formData.password,
       };
 
-      // Debug: Cek data yang akan dikirim
-      console.log('📤 Data admin login yang akan dikirim:', loginData);
+      console.log('Data admin login yang akan dikirim:', loginData);
 
       const response = await api.post("/login", loginData);
 
-      console.log('✅ Response dari backend:', response.data);
+      console.log('Response dari backend:', response.data);
 
-      // Pastikan user adalah admin
       if (response.data.user.role !== 'admin') {
         toast.error('Anda tidak memiliki akses admin!');
         return;
       }
 
-      // SIMPAN USER KE CONTEXT
       login(response.data.user);
 
       toast.success('Login admin berhasil!');
       navigate('/admin/dashboard');
 
     } catch (err: any) {
-      console.error('❌ Error admin login:', err.response?.data || err);
+      console.error('Error admin login:', err.response?.data || err);
       toast.error(err.response?.data?.message || 'Email atau password admin salah!');
     }
   };

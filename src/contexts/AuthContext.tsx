@@ -23,11 +23,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔥 AMBIL USER DARI SESSION LARAVEL
+  // Ambil user dari session Laravel
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // 🔥 WAJIB: Ambil CSRF token dulu
+        // Ambil CSRF token dulu
         await getCsrfCookie();
         
         // Cek apakah user sudah login
@@ -49,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      // 🔥 WAJIB: Ambil CSRF token dulu
+      // Ambil CSRF token dulu
       await getCsrfCookie();
       
       // Logout

@@ -45,8 +45,7 @@ export default function RegisterPage() {
       return;
     }
     try {
-    // 🔥 WAJIB: Ambil CSRF token dulu
-    await getCsrfCookie();
+      // Ambil CSRF token dulu
 
     // BARU kemudian register
     const registerData = {
@@ -63,7 +62,7 @@ export default function RegisterPage() {
 
     const response = await api.post("/register", registerData);
 
-    console.log('✅ Response dari backend:', response.data);
+      console.log('Response dari backend:', response.data);
     toast.success("Registrasi berhasil! Silakan login.");
 
     setTimeout(() => {

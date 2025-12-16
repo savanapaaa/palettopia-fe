@@ -88,7 +88,7 @@ export default function AdminProductsPage() {
         setTotalProducts(productsData.length);
       }
     } catch (error: any) {
-      console.error('❌ Error fetching products:', error);
+      console.error('Error fetching products:', error);
       toast.error('Gagal memuat produk');
     } finally {
       setLoading(false);
@@ -102,7 +102,7 @@ export default function AdminProductsPage() {
       toast.success('Produk berhasil dihapus');
       fetchProducts(); // Refresh list
     } catch (error: any) {
-      console.error('❌ Error deleting product:', error);
+      console.error('Error deleting product:', error);
       toast.error('Gagal menghapus produk');
     }
   };

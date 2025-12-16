@@ -34,7 +34,7 @@ export default function LoginPage() {
     }
 
     try {
-      // 🔥 WAJIB: Ambil CSRF token dulu
+      // Ambil CSRF token dulu
       await getCsrfCookie();
 
       // BARU kemudian login
@@ -48,7 +48,7 @@ export default function LoginPage() {
 
       const response = await api.post("/login", loginData);
 
-      console.log('✅ Response dari backend:', response.data);
+      console.log('Response dari backend:', response.data);
 
       // SIMPAN USER KE CONTEXT
       login(response.data.user);
@@ -57,7 +57,7 @@ export default function LoginPage() {
       navigate("/dashboard");
 
     } catch (err: any) {
-      console.error('❌ Error login:', err.response?.data || err);
+      console.error('Error login:', err.response?.data || err);
       toast.error(err.response?.data?.message || "Gagal terhubung ke server");
     }
   };

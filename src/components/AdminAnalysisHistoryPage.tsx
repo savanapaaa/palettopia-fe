@@ -57,6 +57,7 @@ export default function AdminAnalysisHistoryPage() {
       await getCsrfCookie();
       
       const params = new URLSearchParams();
+      params.append('per_page', '1000'); // Tampilkan semua data
       if (filterPalette !== 'all') {
         params.append('palette', filterPalette);
       }
@@ -66,7 +67,7 @@ export default function AdminAnalysisHistoryPage() {
       
       const url = `/admin/analyses${params.toString() ? '?' + params.toString() : ''}`;
       const response = await api.get(url);
-      console.log('📊 Analyses from backend:', response.data);
+      console.log('Analyses from backend:', response.data);
       
       const analysesData = response.data.data || response.data;
       if (analysesData.data) {
@@ -77,7 +78,7 @@ export default function AdminAnalysisHistoryPage() {
         setTotalAnalyses(analysesData.length);
       }
     } catch (error: any) {
-      console.error('❌ Error fetching analyses:', error);
+      console.error('Error fetching analyses:', error);
       toast.error('Gagal memuat riwayat analisis');
     } finally {
       setLoading(false);
@@ -175,10 +176,10 @@ export default function AdminAnalysisHistoryPage() {
                 <div className="relative">
                   <Filter className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10" />
                   <Select value={filterPalette} onValueChange={setFilterPalette}>
-                    <SelectTrigger className="pl-10 border-purple-200">
+                    <SelectTrigger className="pl-10 border-purple-200 bg-white">
                       <SelectValue placeholder="Filter palette" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       {paletteOptions.map((option) => (
                         <SelectItem key={option.value} value={option.value}>
                           {option.label}

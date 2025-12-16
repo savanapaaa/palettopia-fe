@@ -45,13 +45,13 @@ export default function HistoryPage() {
       await getCsrfCookie();
       
       const response = await api.get('/history');
-      console.log('📥 History from backend:', response.data);
+      console.log('History from backend:', response.data);
       
       // Backend bisa return array langsung atau wrapped dalam object
       const historyData = Array.isArray(response.data) ? response.data : response.data.data || [];
       setHistoryList(historyData);
     } catch (error: any) {
-      console.error('❌ Error fetching history:', error);
+      console.error('Error fetching history:', error);
       toast.error('Gagal memuat riwayat analisis');
     } finally {
       setLoading(false);
@@ -66,7 +66,7 @@ export default function HistoryPage() {
       setHistoryList(historyList.filter(item => item.id !== id));
       toast.success('Riwayat berhasil dihapus');
     } catch (error: any) {
-      console.error('❌ Error deleting history:', error);
+      console.error('Error deleting history:', error);
       toast.error('Gagal menghapus riwayat');
     }
   };
