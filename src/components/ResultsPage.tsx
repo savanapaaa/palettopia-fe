@@ -6,7 +6,7 @@ import { Badge } from './ui/badge.tsx';
 import DashboardNavbar from './DashboardNavbar';
 import { Sparkles, ShoppingBag, CheckCircle, ArrowRight, ExternalLink, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { ImageWithFallback } from './Fallback/ImageGirlFallback.tsx';
+// import { ImageWithFallback } from './Fallback/ImageGirlFallback.tsx';
 import api, { getCsrfCookie, getImageUrl } from '../services/api';
 
 export default function ResultsPage() {

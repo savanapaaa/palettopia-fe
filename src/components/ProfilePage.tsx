@@ -21,7 +21,7 @@ import {
 } from './ui/alert-dialog.tsx';
 import { toast } from "sonner";
 import { useAuth } from '../contexts/AuthContext';
-import api, { getCsrfCookie, getImageUrl } from '../services/api';
+import api, { getCsrfCookie } from '../services/api';
 import { useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 

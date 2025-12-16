@@ -6,7 +6,7 @@ import { Label } from './ui/label.tsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card.tsx';
 import { Palette, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
-import api, { getCsrfCookie } from "../services/api.ts";
+import api from "../services/api.ts";
 
 export default function RegisterPage() {
   const navigate = useNavigate();

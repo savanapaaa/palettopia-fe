@@ -76,7 +76,7 @@ export default function AdminNavbar() {
                   <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
                     <User className="w-5 h-5 text-white" />
                   </div>
-                  <span>{user?.nama}</span>
+                  <span>{user?.full_name}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-white w-48">
