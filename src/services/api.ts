@@ -1,8 +1,7 @@
 import axios from "axios";
 
 // API Configuration
-// Change this to http://127.0.0.1:8000 if localhost doesn't work
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 // Set default configuration
 axios.defaults.baseURL = API_BASE_URL;
