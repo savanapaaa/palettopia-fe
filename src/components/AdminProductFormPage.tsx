@@ -22,10 +22,16 @@ export default function AdminProductFormPage() {
     category: '',
     price: 0,
     stock: 0,
-    palettes: [] as string[], // Multiple palette selection
+    palettes: [] as string[], 
     description: '',
     image: null as File | null,
   });
+  const productCategories = [
+  { value: 'atasan', label: 'Atasan' },
+  { value: 'bawahan', label: 'Bawahan' },
+  { value: 'aksesoris', label: 'Aksesoris' },
+];
+
 
   useEffect(() => {
     if (isEditMode && id) {
@@ -195,13 +201,21 @@ export default function AdminProductFormPage() {
                   <Label htmlFor="category">
                     Kategori <span className="text-red-500">*</span>
                   </Label>
-                  <Input
+                  <select
                     id="category"
-                    placeholder="Pilih Kategori"
                     value={formData.category}
                     onChange={(e) => handleInputChange('category', e.target.value)}
-                    className="border-purple-200 focus:border-purple-400"
-                  />
+                    className="w-full rounded-md border border-purple-200 bg-white px-3 py-2 text-sm
+                              focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
+                  >
+                    <option value="">Pilih Kategori</option>
+                    {productCategories.map((cat) => (
+                      <option key={cat.value} value={cat.value}>
+                        {cat.label}
+                      </option>
+                    ))}
+                  </select>
+
                 </div>
 
                 {/* Harga & Stok */}
