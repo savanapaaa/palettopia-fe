@@ -259,33 +259,41 @@ export default function ProfilePage() {
 
                   {/* Stats Section */}
                   <div className="pt-6 border-t border-gray-200">
-                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
                       Statistik Analisis
                     </h4>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+
                       <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-4 rounded-lg">
                         <div className="flex items-center gap-2 text-gray-600 mb-1">
                           <BarChart className="w-4 h-4" />
                           <span className="text-sm">Total Analisis</span>
                         </div>
-                        <p className="text-2xl font-bold text-gray-800">{historyList.length}</p>
+                        <p className="text-xl font-semibold text-gray-800">
+                          {historyList.length}
+                          </p>
                       </div>
-                      <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-4 rounded-lg">
+
+                      <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-3 rounded-lg">
                         <div className="flex items-center gap-2 text-gray-600 mb-1">
                           <Palette className="w-4 h-4" />
-                          <span className="text-sm">Kategori Terakhir</span>
+                          <span className="text-xs">Kategori Terakhir</span>
                         </div>
-                        <p className="text-2xl font-bold text-gray-800">{historyList.length > 0 ? historyList[0].result_palette : '-'}</p>
+                        <p className="text-base font-semibold text-gray-800 capitalize">
+                          {historyList.length > 0 ? historyList[0].result_palette : '-'}
+                          </p>
                       </div>
-                      <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-4 rounded-lg">
+
+                      <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-3 rounded-lg">
                         <div className="flex items-center gap-2 text-gray-600 mb-1">
                           <Calendar className="w-4 h-4" />
-                          <span className="text-sm">Analisis Terakhir</span>
+                          <span className="text-xs">Analisis Terakhir</span>
                         </div>
-                        <p className="text-2xl font-bold text-gray-800">
+                        <p className="text-sm font-medium text-gray-800">
                           {historyList.length > 0 ? formatDate(historyList[0].created_at) : '-'}
                         </p>
                       </div>
+                      
                     </div>
                   </div>
                 </CardContent>

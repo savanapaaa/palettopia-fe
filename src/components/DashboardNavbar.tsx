@@ -92,7 +92,6 @@ export default function DashboardNavbar() {
             </Link>
           ))}
 
-          <Button className="text-gray-600 border w-full">
             <Link
             to="/dashboard/profil"
             onClick={() => setOpen(false)}
@@ -100,7 +99,6 @@ export default function DashboardNavbar() {
           >
             Profil
           </Link>
-          </Button>
 
           <Button onClick={handleLogout} className="text-red-600 border w-full">
             Logout
