@@ -262,17 +262,15 @@ export default function CatalogPage() {
                     <p className="text-purple-600 mb-4 font-bold">
                       Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
                     </p>
-                    {product.link ? (
-                      <a href={product.link} target="_blank" rel="noopener noreferrer">
-                        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm sm:text-base">
-                          Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
+
+                        <Button 
+                        onClick={()=>
+                          window.open('https://wa.me/6285784241963', '_blank')
+                        }
+                        className="w-full mt-3"
+                        >
+                            Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
-                      </a>
-                    ) : (
-                      <Button disabled className="w-full text-sm sm:text-base">
-                        Lihat Detail
-                      </Button>
-                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -288,7 +286,7 @@ export default function CatalogPage() {
                 Lakukan analisis warna untuk mendapatkan rekomendasi produk yang sesuai dengan palet warna personal Anda
               </p>
               <Button
-                onClick={() => window.location.href = '#/dashboard/analisis'}
+                onClick={() => window.location.href = '/dashboard/analisis'}
                 size="lg"
                 className="bg-white text-purple-600 hover:bg-gray-100"
               >

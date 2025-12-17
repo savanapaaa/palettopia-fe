@@ -6,13 +6,11 @@ import { Badge } from './ui/badge.tsx';
 import DashboardNavbar from './DashboardNavbar';
 import { Sparkles, ShoppingBag, CheckCircle, ArrowRight, ExternalLink, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-// import { ImageWithFallback } from './Fallback/ImageGirlFallback.tsx';
 import api, { getCsrfCookie, getImageUrl } from '../services/api';
 
 export default function ResultsPage() {
   const location = useLocation();
   
-  // Ambil data dari backend (dari navigate state)
   const uploadedImage = location.state?.image;
   const palette = location.state?.palette || 'Tidak Terdeteksi';
   const explanation = location.state?.explanation || 'Tidak ada penjelasan';
@@ -25,7 +23,6 @@ export default function ResultsPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
 
-  // Debug: lihat data yang diterima
   console.log('Data diterima di ResultsPage:', {
     palette,
     explanation,
@@ -34,7 +31,6 @@ export default function ResultsPage() {
     recommendations
   });
 
-  // Fetch products from backend when showProducts is true
   useEffect(() => {
     if (showProducts && palette && palette !== 'Tidak Terdeteksi') {
       fetchProducts();
@@ -46,7 +42,6 @@ export default function ResultsPage() {
       setLoadingProducts(true);
       await getCsrfCookie();
       
-      // Use palette_category from analysis result
       const paletteCategory = palette.toLowerCase();
       const response = await api.get(`/products?palette_category=${encodeURIComponent(paletteCategory)}`);
       
@@ -290,19 +285,29 @@ export default function ResultsPage() {
           )}
 
           {/* Action Buttons */}
-          <div className="flex gap-4 mt-8">
+          <div className="mt-8 flex gap-1">
             <Link to="/dashboard/analisis" className="flex-1">
-              <Button variant="outline" className="w-full border-purple-300 text-purple-600 hover:bg-purple-50">
+              <Button
+                variant="outline"
+                className="w-full border-purple-300 text-purple-600 hover:bg-purple-50 text-sm py-2"
+              >
                 Analisis Baru
               </Button>
             </Link>
+
             <Link to="/dashboard/riwayat" className="flex-1">
-              <Button variant="outline" className="w-full border-purple-300 text-purple-600 hover:bg-purple-50">
+              <Button
+                variant="outline"
+                className="w-full border-purple-300 text-purple-600 hover:bg-purple-50 text-sm py-2"
+              >
                 Lihat Riwayat
               </Button>
             </Link>
+
             <Link to="/dashboard" className="flex-1">
-              <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
+              <Button
+                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm py-2"
+              >
                 Kembali ke Dashboard
               </Button>
             </Link>
