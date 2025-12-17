@@ -92,7 +92,7 @@ export default function DashboardNavbar() {
             </Link>
           ))}
 
-          <Button>
+          <Button className="text-gray-600 border w-full">
             <Link
             to="/dashboard/profil"
             onClick={() => setOpen(false)}
