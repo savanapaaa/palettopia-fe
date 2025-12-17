@@ -296,7 +296,7 @@ export default function ResultsPage() {
           )}
 
           {/* Action Buttons */}
-          <div className="mt-8 flex gap-1">
+          <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:gap-2">
             <Link to="/dashboard/analisis" className="flex-1">
               <Button
                 variant="outline"
