@@ -92,6 +92,17 @@ export default function DashboardNavbar() {
             </Link>
           ))}
 
+          <hr />
+
+          <Link
+            to="/dashboard/profil"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 text-gray-700"
+          >
+            <User className="w-4 h-4" />
+            Profil
+          </Link>
+
           <Button onClick={handleLogout} className="text-red-600 border w-full">
             Logout
           </Button>
