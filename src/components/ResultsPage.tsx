@@ -180,6 +180,9 @@ export default function ResultsPage() {
                       <CardContent className="pt-4">
                         <h3 className="mb-2">{product.name}</h3>
                         <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                        <p className="text-purple-600 mb-4 font-bold">
+                          Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
+                        </p>
                         <Button 
                         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
                         hover:from-pink-600 hover:to-purple-700 text-white"
@@ -264,6 +267,9 @@ export default function ResultsPage() {
                       <CardContent className="pt-4">
                         <h3 className="mb-2">{product.name}</h3>
                         <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                        <p className="text-purple-600 mb-4 font-bold">
+                          Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
+                        </p>
                         <Button 
                         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
                         hover:from-pink-600 hover:to-purple-700 text-white"
