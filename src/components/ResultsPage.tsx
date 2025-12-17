@@ -163,6 +163,7 @@ export default function ResultsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {recommendations.map((product: any, index: number) => (
                     <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="relative">
                       <img
                         src={getImageUrl(product.image_url || product.image) || 'https://via.placeholder.com/400'}
                         alt={product.name}
@@ -171,22 +172,23 @@ export default function ResultsPage() {
                           (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x300?text=No+Image';
                         }}
                       />
-                      <CardContent className="p-4">
-                        <h4 className="font-semibold text-lg mb-2">{product.name}</h4>
-                        <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-purple-600 font-bold">
-                            Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
-                          </span>
-                          <Button 
+
+                      <Badge className="absolute top-3 right-3 bg-white text-purple-600">
+                          {product.palette_category}
+                        </Badge>
+                      </div>
+                      <CardContent className="pt-4">
+                        <h3 className="mb-2">{product.name}</h3>
+                        <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                        <Button 
+                        className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
+                        hover:from-pink-600 hover:to-purple-700 text-white"
                         onClick={()=>
                           window.open('https://wa.me/6282229638559', '_blank')
                         }
-                        className="w-full mt-3"
                         >
                             Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
-                        </div>
                       </CardContent>
                     </Card>
                   ))}
@@ -230,6 +232,7 @@ export default function ResultsPage() {
                 </Link>
               </div>
 
+              {/* Jika produk kosong */}
               {loadingProducts ? (
                 <div className="col-span-full flex justify-center items-center py-12">
                   <Loader2 className="animate-spin h-8 w-8 text-purple-600" />
@@ -241,9 +244,13 @@ export default function ResultsPage() {
                   <p className="text-gray-500">Belum ada produk untuk kategori ini.</p>
                 </div>
               ) : (
+
+                // Menampilkan produk lainnya
                 <div className="grid md:grid-cols-3 gap-6">
                   {products.map((product) => (
-                    <Card key={product.id} className="border-2 border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all overflow-hidden">
+                    <Card key={product.id} 
+                    className="border-2 border-purple-100 
+                    hover:border-purple-300 hover:shadow-lg transition-all overflow-hidden">
                       <div className="relative h-64">
                         <img
                           src={getImageUrl(product.image_url)}
@@ -263,13 +270,9 @@ export default function ResultsPage() {
                         onClick={()=>
                           window.open('https://wa.me/6282229638559', '_blank')
                         }
-                        // className="w-full mt-3"
                         >
                             Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
-                        {/* <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
-                          Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
-                        </Button> */}
                       </CardContent>
                     </Card>
                   ))}

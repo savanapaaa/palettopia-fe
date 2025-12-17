@@ -264,10 +264,11 @@ export default function CatalogPage() {
                     </p>
 
                         <Button 
+                        className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
+                        hover:from-pink-600 hover:to-purple-700 text-white"
                         onClick={()=>
                           window.open('https://wa.me/6282229638559', '_blank')
                         }
-                        className="w-full mt-3"
                         >
                             Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
