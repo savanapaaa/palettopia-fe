@@ -178,16 +178,14 @@ export default function ResultsPage() {
                           <span className="text-purple-600 font-bold">
                             Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
                           </span>
-                          {product.link && (
-                            <a
-                              href={product.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-purple-600 hover:text-purple-700"
-                            >
-                              <ExternalLink className="w-5 h-5" />
-                            </a>
-                          )}
+                          <Button 
+                        onClick={()=>
+                          window.open('https://wa.me/6282229638559', '_blank')
+                        }
+                        className="w-full mt-3"
+                        >
+                            Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
+                        </Button>
                         </div>
                       </CardContent>
                     </Card>
@@ -259,9 +257,19 @@ export default function ResultsPage() {
                       <CardContent className="pt-4">
                         <h3 className="mb-2">{product.name}</h3>
                         <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-                        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
-                          Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
+                        <Button 
+                        className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
+                        hover:from-pink-600 hover:to-purple-700 text-white"
+                        onClick={()=>
+                          window.open('https://wa.me/6282229638559', '_blank')
+                        }
+                        // className="w-full mt-3"
+                        >
+                            Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
+                        {/* <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
+                          Lihat Detail <ExternalLink className="ml-2 w-4 h-4" />
+                        </Button> */}
                       </CardContent>
                     </Card>
                   ))}

@@ -265,7 +265,7 @@ export default function CatalogPage() {
 
                         <Button 
                         onClick={()=>
-                          window.open('https://wa.me/6285784241963', '_blank')
+                          window.open('https://wa.me/6282229638559', '_blank')
                         }
                         className="w-full mt-3"
                         >
