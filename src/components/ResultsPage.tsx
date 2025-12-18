@@ -112,7 +112,7 @@ export default function ResultsPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Badge className="text-lg px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600">
+                  <Badge className="text-lg px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-purple-600">
                     {palette}
                   </Badge>
                 </div>
