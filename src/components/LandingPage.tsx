@@ -308,24 +308,24 @@ export default function LandingPage() {
                 <Sparkles className="w-6 h-6 text-purple-600" />
                 Manfaat Mengetahui Personal Colour
               </h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-2">
+              <ul className="space-y-3 list-disc list-inside text-gray-600">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Meningkatkan penampilan dan membuat wajah terlihat lebih cerah dan fresh</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Menghemat waktu dan uang dengan membeli pakaian yang benar-benar cocok</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Meningkatkan kepercayaan diri dengan tampil maksimal setiap hari</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Memudahkan dalam memilih makeup dan aksesori yang sesuai</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Menciptakan lemari pakaian yang lebih kohesif dan mudah di-mix & match</span>
                 </li>
@@ -339,24 +339,24 @@ export default function LandingPage() {
                 <Palette className="w-6 h-6 text-purple-600" />
                 Tips Memilih Warna yang Tepat
               </h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-2">
+              <ul className="space-y-3 list-disc list-inside text-gray-600">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Perhatikan undertone kulit Anda - hangat (golden) atau dingin (pink)</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Warna yang tepat akan membuat mata Anda terlihat lebih berbinar</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Hindari warna yang membuat kulit terlihat kusam atau keabu-abuan</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Gunakan analisis profesional untuk hasil yang paling akurat</span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="marker:text-purple-600">
                   <span className="text-purple-600 mt-1">•</span>
                   <span>Jangan takut bereksperimen dengan nuansa berbeda dalam palet Anda</span>
                 </li>
@@ -410,7 +410,7 @@ export default function LandingPage() {
                 Register</Link></li>
               </ul>
             </div> */}
-            
+
             <div>
               <h4 className="mb-4">Partner</h4>
               <p className="text-gray-400">byneera.id</p>
