@@ -329,7 +329,7 @@ export default function AdminAnalysisHistoryPage() {
                 </div>
               </div>
 
-              {/* Image */}
+              {/* Image
               {selectedAnalysis.image_url && (
                 <div>
                   <h3 className="text-lg mb-3">Foto Analisis</h3>
@@ -339,7 +339,7 @@ export default function AdminAnalysisHistoryPage() {
                     className="w-full rounded-lg"
                   />
                 </div>
-              )}
+              )} */}
 
               {/* Color Palette */}
               <div>
