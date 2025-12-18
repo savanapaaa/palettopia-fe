@@ -60,7 +60,7 @@ export default function DashboardNavbar() {
 
           {/* PROFILE DROPDOWN */}
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger className='bg-white' asChild>
               <Button variant="ghost" className="flex items-center gap-2">
                 <User className="w-5 h-5" /> {user?.full_name}
               </Button>
