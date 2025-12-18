@@ -215,7 +215,7 @@ export default function AdminAnalysisHistoryPage() {
                         <TableHead>Nama Pengguna</TableHead>
                         <TableHead>Email</TableHead>
                         <TableHead>Hasil Palette</TableHead>
-                        <TableHead>Gambar</TableHead>
+                        {/* <TableHead>Gambar</TableHead> */}
                         <TableHead>Tanggal</TableHead>
                         <TableHead className="text-right">Aksi</TableHead>
                       </TableRow>
@@ -244,7 +244,7 @@ export default function AdminAnalysisHistoryPage() {
                               {item.result_palette}
                             </Badge>
                           </TableCell>
-                          <TableCell>
+                          {/* <TableCell>
                             {item.image_url ? (
                               <img 
                                 src={getImageUrl(item.image_url)} 
@@ -256,7 +256,7 @@ export default function AdminAnalysisHistoryPage() {
                                 <History className="w-6 h-6 text-gray-400" />
                               </div>
                             )}
-                          </TableCell>
+                          </TableCell> */}
                           <TableCell>
                             <div className="flex items-center gap-1 text-gray-600 text-sm">
                               <Calendar className="w-4 h-4" />
