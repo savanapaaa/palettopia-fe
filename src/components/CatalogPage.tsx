@@ -158,7 +158,7 @@ export default function CatalogPage() {
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
                     )}
                     <p className="text-purple-600 mb-4 font-bold">
-                      {formatRupiah(Number(product.price) * 1000)}
+                      {formatRupiah(product.price)}
                     </p>
 
                         <Button 
