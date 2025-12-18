@@ -60,12 +60,12 @@ export default function DashboardNavbar() {
 
           {/* PROFILE DROPDOWN */}
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-white' asChild>
+            <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2">
                 <User className="w-5 h-5" /> {user?.full_name}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className='bg-white' >
               <DropdownMenuItem onClick={() => navigate('/dashboard/profil')}>
                 Profil
               </DropdownMenuItem>
