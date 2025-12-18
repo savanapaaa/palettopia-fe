@@ -6,7 +6,6 @@ import { Palette, Target, Lightbulb, Users, ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from './Fallback/ImageCeritaFallback.tsx';
 import Banner from "../assets/img/cerita.png";
 
-
 import T1 from "../assets/img/team1.png";
 import T2 from "../assets/img/team2.png";
 import T3 from "../assets/img/team3.png";

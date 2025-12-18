@@ -9,7 +9,6 @@ interface AdminRouteProps {
 export default function AdminRoute({ children }: AdminRouteProps) {
   const { user, isAuthenticated, loading } = useAuth();
 
-  // Tunggu sampai loading selesai
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">

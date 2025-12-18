@@ -45,7 +45,7 @@ export default function RegisterPage() {
       return;
     }
     try {
-      // Ambil CSRF token dulu
+      // Ambil CSRF token 
 
     // BARU kemudian register
     const registerData = {
@@ -53,12 +53,12 @@ export default function RegisterPage() {
       email: formData.email,
       phone: formData.nomorTelepon,
       password: formData.password,
-      password_confirmation: formData.confirmPassword, // HARUS ADA & SAMA dengan password
+      password_confirmation: formData.confirmPassword, 
     };
 
-    // Debug: Cek data yang akan dikirim
-    console.log('📤 Data yang akan dikirim ke backend:', registerData);
-    console.log('✅ Password match:', formData.password === formData.confirmPassword);
+    //Cek data yang akan dikirim
+    console.log('Data yang akan dikirim ke backend:', registerData);
+    console.log('Password match:', formData.password === formData.confirmPassword);
 
     const response = await api.post("/register", registerData);
 
@@ -77,7 +77,8 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        <Link to="/" className="flex items-center gap-2 text-gray-600 hover:text-purple-600 mb-8 transition-colors">
+        <Link to="/" className="flex items-center gap-2 text-gray-600 
+        hover:text-purple-600 mb-8 transition-colors">
           <ArrowLeft className="w-5 h-5" />
           Kembali ke Beranda
         </Link>
@@ -150,7 +151,8 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 
+                    hover:text-gray-700"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -172,7 +174,8 @@ export default function RegisterPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white"
+                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
+                hover:from-pink-600 hover:to-purple-700 text-white"
               >
                 Daftar
               </Button>

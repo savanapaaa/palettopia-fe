@@ -88,7 +88,6 @@ export default function ProfilePage() {
 
   const handleEditToggle = async () => {
     if (isEditing) {
-      // 🔥 Simpan perubahan ke backend
       try {
         await getCsrfCookie();
         await api.put('/profile', {
@@ -96,11 +95,11 @@ export default function ProfilePage() {
           phone: profileData.phone
         });
         toast.success('Profil berhasil diperbarui');
-        fetchProfile(); // Refresh data
+        fetchProfile(); 
       } catch (error: any) {
         console.error('Error updating profile:', error);
         toast.error(error.response?.data?.message || 'Gagal memperbarui profil');
-        return; // Jangan toggle editing jika gagal
+        return; 
       }
     }
     setIsEditing(!isEditing);
@@ -116,7 +115,7 @@ export default function ProfilePage() {
       await api.delete(`/history/${id}`);
       setHistoryList(historyList.filter(item => item.id !== id));
       toast.success('Riwayat berhasil dihapus');
-      fetchProfile(); // Refresh statistics
+      fetchProfile(); 
     } catch (error: any) {
       console.error('Error deleting history:', error);
       toast.error('Gagal menghapus riwayat');
@@ -324,10 +323,13 @@ export default function ProfilePage() {
                       <History className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                       <h3 className="text-xl mb-2 text-gray-600">Belum Ada Riwayat</h3>
                       <p className="text-gray-500 mb-6">
-                        Anda belum melakukan analisis warna. Mulai sekarang untuk mendapatkan rekomendasi palet warna personal!
+                        Anda belum melakukan analisis warna. 
+                        Mulai sekarang untuk mendapatkan rekomendasi palet warna personal!
                       </p>
                       <Link to="/dashboard/analisis">
-                        <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
+                        <Button 
+                        className="bg-gradient-to-r from-pink-500 to-purple-600 
+                        hover:from-pink-600 hover:to-purple-700 text-white">
                           Mulai Analisis
                         </Button>
                       </Link>
@@ -336,7 +338,8 @@ export default function ProfilePage() {
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {historyList.map((item) => (
-                      <Card key={item.id} className="border-2 border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all">
+                      <Card key={item.id} className="border-2 border-purple-100 
+                      hover:border-purple-300 hover:shadow-lg transition-all">
                         <CardHeader>
                           <div className="flex items-center gap-2 mb-2 text-gray-600">
                             <Calendar className="w-4 h-4" />
@@ -373,7 +376,8 @@ export default function ProfilePage() {
                             </Button>
                             <AlertDialog>
                               <AlertDialogTrigger asChild>
-                                <Button variant="outline" size="icon" className="border-red-300 text-red-600 hover:bg-red-50">
+                                <Button variant="outline" size="icon" 
+                                className="border-red-300 text-red-600 hover:bg-red-50">
                                   <Trash2 className="w-4 h-4" />
                                 </Button>
                               </AlertDialogTrigger>
@@ -381,7 +385,8 @@ export default function ProfilePage() {
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>Hapus Riwayat?</AlertDialogTitle>
                                   <AlertDialogDescription>
-                                    Tindakan ini tidak dapat dibatalkan. Riwayat analisis ini akan dihapus permanen dari akun Anda.
+                                    Tindakan ini tidak dapat dibatalkan. 
+                                    Riwayat analisis ini akan dihapus permanen dari akun Anda.
                                   </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>

@@ -34,7 +34,7 @@ export default function HistoryPage() {
   const [selectedHistory, setSelectedHistory] = useState<HistoryItem | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔥 Fetch history dari backend
+  // Fetch history dari backend
   useEffect(() => {
     fetchHistory();
   }, []);
@@ -47,7 +47,6 @@ export default function HistoryPage() {
       const response = await api.get('/history');
       console.log('History from backend:', response.data);
       
-      // Backend bisa return array langsung atau wrapped dalam object
       const historyData = Array.isArray(response.data) ? response.data : response.data.data || [];
       setHistoryList(historyData);
     } catch (error: any) {
@@ -115,7 +114,8 @@ export default function HistoryPage() {
                 <History className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-xl mb-2 text-gray-600">Belum Ada Riwayat</h3>
                 <p className="text-gray-500 mb-6">
-                  Anda belum melakukan analisis warna. Mulai sekarang untuk mendapatkan rekomendasi palet warna personal!
+                  Anda belum melakukan analisis warna. 
+                  Mulai sekarang untuk mendapatkan rekomendasi palet warna personal!
                 </p>
                 <Link to="/dashboard/analisis">
                   <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">

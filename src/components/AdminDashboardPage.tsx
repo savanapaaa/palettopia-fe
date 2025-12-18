@@ -38,11 +38,11 @@ export default function AdminDashboardPage() {
     try {
       await getCsrfCookie();
       const response = await api.get('/admin/statistics');
-      console.log('📊 Dashboard statistics:', response.data);
+      console.log('Dashboard statistics:', response.data);
       const data = response.data.data || response.data;
       setStats(data);
     } catch (error: any) {
-      console.error('❌ Error fetching statistics:', error);
+      console.error('Error fetching statistics:', error);
       toast.error('Gagal memuat statistik dashboard');
     } finally {
       setLoading(false);

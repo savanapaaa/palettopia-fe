@@ -66,10 +66,10 @@ export default function AnalysisPage() {
   try {
     setIsAnalyzing(true);
 
-    // Ambil CSRF token dulu
+    // Ambil CSRF token 
     await getCsrfCookie();
 
-    // STEP 1: Upload foto ke backend
+    // Upload foto ke backend
     toast.info('Mengunggah foto...');
     
     // Convert base64 to blob/file
@@ -84,24 +84,22 @@ export default function AnalysisPage() {
     const imageUrl = uploadResponse.data.url || uploadResponse.data.path;
     console.log('Image uploaded:', imageUrl);
 
-    // 🔹 STEP 2: Request analisis dengan image_url yang sudah diupload
+    // Request analisis dengan image_url yang sudah diupload
     toast.info('Menganalisis foto...');
     
     const analysisResponse = await api.post('/analysis', {
       image_url: imageUrl,
-      // atau image_path: imageUrl, tergantung backend
     });
 
     console.log('RESPONSE DARI BACKEND:', analysisResponse.data);
 
-    // Backend mengirim: { success: true, data: { palette_name, colors, ... } }
     const result = analysisResponse.data.data || analysisResponse.data;
     
-    console.log('📊 Analysis Result:', result);
+    console.log('Analysis Result:', result);
 
     toast.success('Analisis selesai!');
 
-    // 🔹 STEP 3: pindah ke halaman hasil
+    // pindah ke halaman hasil
     navigate('/dashboard/hasil', {
       state: {
         image: selectedImage,

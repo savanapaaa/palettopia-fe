@@ -87,18 +87,17 @@ export default function AdminProductsPage() {
       
       const url = `/admin/products${params.toString() ? '?' + params.toString() : ''}`;
       const response = await api.get(url);
-      console.log('📦 Products from backend:', response.data);
-      
-      // Backend format: { success: true, data: { data: [...], current_page, ... }, stats: {...} }
+      console.log('Products from backend:', response.data);
+
       const responseData = response.data;
       
-      // Parse products
+      //produk
       if (responseData.data) {
         const productsArray = responseData.data.data || responseData.data;
         setProducts(Array.isArray(productsArray) ? productsArray : []);
       }
       
-      // Parse stats
+      // stats
       if (responseData.stats) {
         setStats(responseData.stats);
       }

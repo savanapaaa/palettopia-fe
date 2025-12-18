@@ -24,7 +24,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Hamburger icon only on mobile */}
+          {/* Hamburger icon */}
           <button
             className="md:hidden p-2"
             onClick={() => setOpen(!open)}

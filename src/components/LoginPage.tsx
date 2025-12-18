@@ -34,17 +34,17 @@ export default function LoginPage() {
     }
 
     try {
-      // Ambil CSRF token dulu
+      // Ambil CSRF token 
       await getCsrfCookie();
 
-      // BARU kemudian login
+      // login
       const loginData = {
         email: formData.email,
         password: formData.password,
       };
 
-      // Debug: Cek data yang akan dikirim
-      console.log('📤 Data login yang akan dikirim:', loginData);
+      // Cek data yang akan dikirim
+      console.log('Data login yang akan dikirim:', loginData);
 
       const response = await api.post("/login", loginData);
 
@@ -65,7 +65,8 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        <Link to="/" className="flex items-center gap-2 text-gray-600 hover:text-purple-600 mb-8 transition-colors">
+        <Link to="/" className="flex items-center gap-2 text-gray-600 hover:text-purple-600 
+        mb-8 transition-colors">
           <ArrowLeft className="w-5 h-5" />
           Kembali ke Beranda
         </Link>

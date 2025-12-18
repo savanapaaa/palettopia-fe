@@ -25,122 +25,11 @@ interface Product {
   link?: string;
 }
 
-const allProductsDummy = [ { 
-  id: 1, 
-  name: 'Dress Terracotta Elegant', 
-  price: 'Rp 450.000', 
-  category: 'Dress', 
-  color: 'Terracotta', 
-  image: 'https://images.unsplash.com/photo-1745695894760-600be9c8c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGZhc2hpb24lMjBkcmVzc3xlbnwxfHx8fDE3NjIyMTY3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Autumn' 
-}, 
-{ 
-  id: 2, 
-  name: 'Blouse Mustard Premium', 
-  price: 'Rp 350.000', 
-  category: 'Blouse', 
-  color: 'Mustard', 
-  image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Autumn' 
-}, 
-{ 
-  id: 3, 
-  name: 'Hijab Olive Green', 
-  price: 'Rp 150.000', 
-  category: 'Hijab', 
-  color: 'Olive Green', 
-  image: 'https://images.unsplash.com/photo-1569388330292-79cc1ec67270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzYyMjU1NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Autumn' 
-}, 
-{ 
-  id: 4, 
-  name: 'Tunik Rust Casual', 
-  price: 'Rp 380.000', 
-  category: 'Tunik', 
-  color: 'Rust', 
-  image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Autumn' 
-}, 
-{ 
-  id: 5, 
-  name: 'Cardigan Caramel', 
-  price: 'Rp 420.000', 
-  category: 'Outer', 
-  color: 'Caramel', 
-  image: 'https://images.unsplash.com/photo-1745695894760-600be9c8c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGZhc2hpb24lMjBkcmVzc3xlbnwxfHx8fDE3NjIyMTY3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Autumn' 
-}, 
-{ 
-  id: 6, 
-  name: 'Set Burgundy Formal', 
-  price: 'Rp 650.000', 
-  category: 'Set', 
-  color: 'Burgundy', 
-  image: 'https://images.unsplash.com/photo-1569388330292-79cc1ec67270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzYyMjU1NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Autumn' 
-}, 
-{ 
-  id: 7, 
-  name: 'Dress Pink Pastel', 
-  price: 'Rp 480.000', 
-  category: 'Dress', 
-  color: 'Pink', 
-  image: 'https://images.unsplash.com/photo-1745695894760-600be9c8c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGZhc2hpb24lMjBkcmVzc3xlbnwxfHx8fDE3NjIyMTY3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Spring' 
-}, 
-{ 
-  id: 8, 
-  name: 'Blouse Lavender', 
-  price: 'Rp 360.000', 
-  category: 'Blouse', 
-  color: 'Lavender', 
-  image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Spring' 
-}, 
-{ 
-  id: 9, 
-  name: 'Tunik Sky Blue', 
-  price: 'Rp 390.000', 
-  category: 'Tunik', 
-  color: 'Sky Blue', 
-  image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Summer' 
-}, 
-{ 
-  id: 10, 
-  name: 'Hijab Mint Green', 
-  price: 'Rp 160.000', 
-  category: 'Hijab', 
-  color: 'Mint', 
-  image: 'https://images.unsplash.com/photo-1569388330292-79cc1ec67270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzYyMjU1NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Summer' 
-}, 
-{ 
-  id: 11, 
-  name: 'Dress Navy Elegant', 
-  price: 'Rp 520.000', 
-  category: 'Dress', 
-  color: 'Navy', 
-  image: 'https://images.unsplash.com/photo-1745695894760-600be9c8c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGZhc2hpb24lMjBkcmVzc3xlbnwxfHx8fDE3NjIyMTY3MTh8MA&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Winter' 
-}, 
-{ 
-  id: 12, 
-  name: 'Outer Black Premium', 
-  price: 'Rp 580.000', 
-  category: 'Outer', 
-  color: 'Black', 
-  image: 'https://images.unsplash.com/photo-1592867874873-85480a35d2aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBjb2xsZWN0aW9ufGVufDF8fHx8MTc2MjMyNTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080', 
-  season: 'Winter' 
-} 
-];
-
 export default function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPalette, setSelectedPalette] = useState<string>('all');
 
-  // Fetch products dari backend
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -150,14 +39,13 @@ export default function CatalogPage() {
       setLoading(true);
       const response = await api.get('/products');
       console.log('Products from backend:', response.data);
-      
-      // Backend bisa return array langsung atau wrapped dalam object
+
       const productsData = Array.isArray(response.data) ? response.data : response.data.data || [];
       setProducts(productsData);
     } catch (error: any) {
       console.error('Error fetching products:', error);
       toast.error('Gagal memuat katalog produk');
-      // Fallback ke dummy data jika backend error
+
       setProducts([]);
     } finally {
       setLoading(false);
@@ -239,12 +127,15 @@ export default function CatalogPage() {
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {filteredProducts.map((product) => (
-                <Card key={product.id} className="border-2 border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all overflow-hidden group">
+                <Card key={product.id} 
+                className="border-2 border-purple-100 hover:border-purple-300 
+                hover:shadow-lg transition-all overflow-hidden group">
                   <div className="relative h-52 sm:h-64 md:h-72 overflow-hidden">
                     <ImageWithFallback
                       src={getImageUrl(product.image_url) || 'https://via.placeholder.com/400'}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 
+                      transition-transform duration-300"
                     />
                     <div className="absolute top-3 right-3 flex flex-col gap-2">
                       {product.palette_category && (

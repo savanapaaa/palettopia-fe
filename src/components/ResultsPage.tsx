@@ -73,7 +73,8 @@ export default function ResultsPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Success Message */}
-          <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-6 text-white mb-8 flex items-center gap-4">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 
+          rounded-2xl p-6 text-white mb-8 flex items-center gap-4">
             <CheckCircle className="w-12 h-12 flex-shrink-0" />
             <div>
               <h2 className="text-2xl mb-1">Analisis Selesai!</h2>
@@ -125,7 +126,7 @@ export default function ResultsPage() {
             </Card>
           </div>
 
-          {/* Color Palette from Backend */}
+          {/* Color Palette*/}
           {colors && colors.length > 0 && (
             <Card className="border-2 border-purple-100 mb-8">
               <CardHeader>
@@ -134,6 +135,7 @@ export default function ResultsPage() {
                   Warna-warna ini akan membuat Anda terlihat lebih menawan
                 </CardDescription>
               </CardHeader>
+
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                   {colors.map((color: string, index: number) => (
@@ -150,7 +152,7 @@ export default function ResultsPage() {
             </Card>
           )}
 
-          {/* Product Recommendations from Backend */}
+          {/* Product Recommendations*/}
           {recommendations && recommendations.length > 0 && (
             <Card className="border-2 border-purple-100 mb-8">
               <CardHeader>
@@ -159,6 +161,7 @@ export default function ResultsPage() {
                   Produk yang cocok dengan palet warna Anda
                 </CardDescription>
               </CardHeader>
+
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {recommendations.map((product: any, index: number) => (
@@ -181,7 +184,9 @@ export default function ResultsPage() {
                         <h3 className="mb-2">{product.name}</h3>
                         <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
                         <p className="text-purple-600 mb-4 font-bold">
-                          Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
+                              Rp {typeof product.price === 'string' 
+                                ? parseFloat(product.price).toLocaleString('id-ID')
+                                : product.price?.toLocaleString('id-ID') || '0'}
                         </p>
                         <Button 
                         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
@@ -200,9 +205,10 @@ export default function ResultsPage() {
             </Card>
           )}
 
-          {/* Product Recommendation CTA */}
+          {/* Product Recommendation */}
           {!showProducts && (
-            <Card className="border-2 border-purple-300 bg-gradient-to-r from-pink-500 to-purple-600 text-white">
+            <Card className="border-2 border-purple-300 bg-gradient-to-r from-pink-500 
+            to-purple-600 text-white">
               <CardContent className="pt-6 text-center">
                 <ShoppingBag className="w-16 h-16 mx-auto mb-4" />
                 <h3 className="text-2xl mb-2">Temukan Produk yang Cocok!</h3>
@@ -226,10 +232,12 @@ export default function ResultsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-3xl mb-2">Rekomendasi Produk untuk Anda</h2>
-                  <p className="text-xl text-gray-600">Koleksi byneera.id yang cocok dengan palet warna Anda</p>
+                  <p className="text-xl text-gray-600">Koleksi byneera.id yang cocok 
+                    dengan palet warna Anda</p>
                 </div>
                 <Link to="/dashboard/katalog">
-                  <Button variant="outline" className="border-purple-300 text-purple-600 hover:bg-purple-50">
+                  <Button variant="outline" className="border-purple-300 text-purple-600 
+                  hover:bg-purple-50">
                     Lihat Semua Produk
                   </Button>
                 </Link>
@@ -268,7 +276,9 @@ export default function ResultsPage() {
                         <h3 className="mb-2">{product.name}</h3>
                         <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
                         <p className="text-purple-600 mb-4 font-bold">
-                          Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
+                              Rp {typeof product.price === 'string' 
+                                ? parseFloat(product.price).toLocaleString('id-ID')
+                                : product.price?.toLocaleString('id-ID') || '0'}
                         </p>
                         <Button 
                         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
@@ -294,7 +304,8 @@ export default function ResultsPage() {
                 <div className="flex items-center gap-3 text-green-700">
                   <CheckCircle className="w-6 h-6" />
                   <div>
-                    <p>Hasil analisis ini telah tersimpan di <Link to="/dashboard/riwayat" className="underline hover:text-green-900">Riwayat Analisis</Link> Anda</p>
+                    <p>Hasil analisis ini telah tersimpan di <Link to="/dashboard/riwayat" 
+                    className="underline hover:text-green-900">Riwayat Analisis</Link> Anda</p>
                   </div>
                 </div>
               </CardContent>
@@ -323,7 +334,8 @@ export default function ResultsPage() {
 
             <Link to="/dashboard" className="flex-1">
               <Button
-                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-sm py-2"
+                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
+                hover:from-pink-600 hover:to-purple-700 text-white text-sm py-2"
               >
                 Kembali ke Dashboard
               </Button>

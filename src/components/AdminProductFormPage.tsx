@@ -113,7 +113,7 @@ export default function AdminProductFormPage() {
       formDataToSend.append('category', formData.category);
       formDataToSend.append('price', formData.price.toString());
       formDataToSend.append('stock', formData.stock.toString());
-      // Send palettes as array or first palette as palette_category
+
       formDataToSend.append('palette_category', formData.palettes[0] || '');
       formData.palettes.forEach(palette => {
         formDataToSend.append('palettes[]', palette);
