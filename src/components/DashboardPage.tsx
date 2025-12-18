@@ -33,7 +33,7 @@ export default function DashboardPage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-purple-100 rounded-xl flex items-center justify-center mb-2">
                   <Scan className="w-6 h-6 text-purple-600" />
                 </div>
-                <CardTitle>Analisis Warna</CardTitle>
+                <CardTitle className='font-bold'>Analisis Warna</CardTitle>
                 <CardDescription>
                   Upload foto dan temukan palet warna personal Anda
                 </CardDescription>
@@ -52,7 +52,7 @@ export default function DashboardPage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-purple-100 rounded-xl flex items-center justify-center mb-2">
                   <History className="w-6 h-6 text-purple-600" />
                 </div>
-                <CardTitle>Riwayat Analisis</CardTitle>
+                <CardTitle className='font-bold'>Riwayat Analisis</CardTitle>
                 <CardDescription>
                   Lihat semua hasil analisis yang pernah Anda lakukan
                 </CardDescription>
@@ -66,12 +66,13 @@ export default function DashboardPage() {
           </Link>
 
           <Link to="/dashboard/katalog">
-            <Card className="border-2 border-purple-100 hover:border-purple-400 hover:shadow-lg transition-all cursor-pointer h-full">
+            <Card className="border-2 border-purple-100 hover:border-purple-400 hover:shadow-lg transition-all 
+            cursor-pointer h-full flex flex-col justify-between">
               <CardHeader>
                 <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-purple-100 rounded-xl flex items-center justify-center mb-2">
                   <ShoppingBag className="w-6 h-6 text-purple-600" />
                 </div>
-                <CardTitle>Katalog Produk</CardTitle>
+                <CardTitle className='font-bold'>Katalog Produk</CardTitle>
                 <CardDescription>
                   Jelajahi koleksi fashion dari byneera.id
                 </CardDescription>
@@ -89,7 +90,7 @@ export default function DashboardPage() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="bg-gradient-to-br from-pink-50 to-white border-pink-200">
             <CardHeader>
-              <CardTitle>Tips Foto yang Baik</CardTitle>
+              <CardTitle className='font-bold'>Tips Foto yang Baik</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-gray-700">
@@ -115,7 +116,7 @@ export default function DashboardPage() {
 
           <Card className="bg-gradient-to-br from-purple-50 to-white border-purple-200">
             <CardHeader>
-              <CardTitle>Tentang Analisis</CardTitle>
+              <CardTitle className='font-bold'>Tentang Analisis</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 mb-4">
