@@ -77,7 +77,7 @@ export default function DashboardNavbar() {
             <DropdownMenuContent 
             side='bottom'
             align='end'
-            sideOffset={8}
+            sideOffset={14}
             className='bg-white' 
             >
               <DropdownMenuItem onClick={() => navigate('/dashboard/profil')}>
