@@ -164,7 +164,7 @@ export default function CatalogPage() {
 
                         <Button 
                         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
-                        hover:from-pink-600 hover:to-purple-700 text-white"
+                        hover:from-pink-600 hover:to-purple-700 text-white flex flex-col justify-between"
                         onClick={()=>
                           window.open('https://wa.me/6282229638559', '_blank')
                         }
