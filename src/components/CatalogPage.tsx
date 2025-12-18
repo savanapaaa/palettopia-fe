@@ -153,7 +153,7 @@ export default function CatalogPage() {
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
                     )}
                     <p className="text-purple-600 mb-4 font-bold">
-                      <CurrencyDisplay value={product.price} />
+                      <CurrencyDisplay value={Number(product.price) || 0} />
                     </p>
 
                         <Button 
