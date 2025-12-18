@@ -62,7 +62,7 @@ export default function DashboardNavbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2">
-                <User className="w-5 h-5" /> {user?.full_name}
+                <User className="w-8 h-8" /> {user?.full_name}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='bg-white' >
