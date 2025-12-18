@@ -174,7 +174,6 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   className="border-purple-200 focus:border-purple-400"
                 />
-                </div>
                 <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -183,6 +182,7 @@ export default function RegisterPage() {
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
+                  </div>
               </div>
 
               <Button
