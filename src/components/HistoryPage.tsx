@@ -192,7 +192,7 @@ export default function HistoryPage() {
                               <AlertDialogCancel>Batal</AlertDialogCancel>
                               <AlertDialogAction
                                 onClick={() => handleDelete(item.id)}
-                                className="bg-red-600 hover:bg-red-700"
+                                className="text-white bg-red-600 hover:bg-red-700"
                               >
                                 Hapus
                               </AlertDialogAction>
@@ -213,10 +213,12 @@ export default function HistoryPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle className="text-2xl">{selectedHistory.category}</CardTitle>
+                      <CardTitle className="text-2xl capitalize">
+                        {selectedHistory.palette_name}
+                      </CardTitle>
                       <CardDescription className="flex items-center gap-2 mt-2">
                         <Calendar className="w-4 h-4" />
-                        {selectedHistory.date}
+                        {formatDate(selectedHistory.created_at)}
                       </CardDescription>
                     </div>
                     <Button

@@ -410,6 +410,7 @@ export default function LandingPage() {
                 Register</Link></li>
               </ul>
             </div> */}
+            
             <div>
               <h4 className="mb-4">Partner</h4>
               <p className="text-gray-400">byneera.id</p>

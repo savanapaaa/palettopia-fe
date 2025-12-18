@@ -107,7 +107,7 @@ export default function ResultsPage() {
                   <CardTitle>Hasil Analisis</CardTitle>
                 </div>
                 <CardDescription className="text-lg">
-                  Kategori Personal Colour Anda
+                  Kategori Personal Color Anda
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
