@@ -134,11 +134,15 @@ export default function HistoryPage() {
                       <Calendar className="w-4 h-4" />
                       <span className="text-sm">{formatDate(item.created_at)}</span>
                       </div>
-                    </div>
-                      <span className="capitalize">{item.palette_name}</span>
+
                       <Badge className="text-white bg-gradient-to-r from-pink-500 to-purple-600">
                         {item.undertone || 'Hasil'}
                       </Badge>
+                      </div>
+                      
+                      <CardTitle>
+                        <span className="capitalize">{item.palette_name}</span>
+                      </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {/* Image Preview */}
