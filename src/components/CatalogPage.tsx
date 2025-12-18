@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import React from 'react';
+import {useRedenominasi, CurrencyDisplay} from 'redenominasi-idr/react'
 import { Card, CardContent } from './ui/card.tsx';
 import { Button } from './ui/button.tsx';
 import { Badge } from './ui/badge.tsx';
 import DashboardNavbar from './DashboardNavbar';
-import { ShoppingBag, ExternalLink, Filter, Loader2 } from 'lucide-react';
+import { ShoppingBag, ExternalLink, Filter, Loader2, Currency } from 'lucide-react';
 import { ImageWithFallback } from './Fallback/ImageGirlFallback.tsx';
 import {
   Select,
@@ -29,17 +31,6 @@ export default function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPalette, setSelectedPalette] = useState<string>('all');
-
-  const formatPrice = (price?: number) => {
-  if (!price) return 'Rp.0.00';
-
-  const formatted = price.toLocaleString('id-ID', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
-  return `Rp.${formatted}`;
-};
 
   useEffect(() => {
     fetchProducts();
@@ -162,7 +153,7 @@ export default function CatalogPage() {
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
                     )}
                     <p className="text-purple-600 mb-4 font-bold">
-                      {formatPrice(product.price)}
+                      <CurrencyDisplay value={product.price} />
                     </p>
 
                         <Button 
