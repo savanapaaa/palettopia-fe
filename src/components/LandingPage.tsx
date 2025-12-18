@@ -399,7 +399,7 @@ export default function LandingPage() {
                 Platform analisis personal colour palette untuk brand byneera.id
               </p>
             </div>
-            <div>
+            {/* <div>
               <h4 className="mb-4">Menu</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
@@ -409,10 +409,12 @@ export default function LandingPage() {
                 <li><Link to="/register" className="hover:text-white transition-colors">
                 Register</Link></li>
               </ul>
-            </div>
+            </div> */}
             <div>
               <h4 className="mb-4">Partner</h4>
               <p className="text-gray-400">byneera.id</p>
+            </div>
+            <div>
               <p className="text-gray-400 mt-4">© 2025 Palettopia. All rights reserved.</p>
             </div>
           </div>
