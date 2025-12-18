@@ -61,7 +61,7 @@ export default function DashboardNavbar() {
           {/* PROFILE DROPDOWN */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center gap-2">
+              <Button variant="ghost" className="flex items-center gap-2 h-auto p-2">
                 <User className="w-12 h-12" /> {user?.full_name}
               </Button>
             </DropdownMenuTrigger>
