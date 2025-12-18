@@ -152,7 +152,8 @@ export default function CatalogPage() {
                       )}
                     </div>
                   </div>
-                  <CardContent className="pt-4">
+
+                  <CardContent className="pt-4 flex flex-col justify-between">
                     <h3 className="text-base sm:text-lg mb-2 font-semibold">{product.name}</h3>
                     {product.description && (
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
