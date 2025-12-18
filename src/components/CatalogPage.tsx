@@ -136,7 +136,7 @@ export default function CatalogPage() {
               {filteredProducts.map((product) => (
                 <Card key={product.id} 
                 className="border-2 border-purple-100 hover:border-purple-300 
-                hover:shadow-lg transition-all overflow-hidden group">
+                hover:shadow-lg transition-all overflow-hidden group flex flex-col justify-between">
                   <div className="relative h-52 sm:h-64 md:h-72 overflow-hidden">
                     <ImageWithFallback
                       src={getImageUrl(product.image_url) || 'https://via.placeholder.com/400'}
@@ -164,7 +164,8 @@ export default function CatalogPage() {
 
                         <Button 
                         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 
-                        hover:from-pink-600 hover:to-purple-700 text-white flex flex-col justify-between"
+                        hover:from-pink-600 hover:to-purple-700 text-white 
+                        flex flex-col justify-between"
                         onClick={()=>
                           window.open('https://wa.me/6282229638559', '_blank')
                         }
