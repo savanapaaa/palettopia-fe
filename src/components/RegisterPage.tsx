@@ -167,7 +167,7 @@ export default function RegisterPage() {
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="Ketik ulang password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
