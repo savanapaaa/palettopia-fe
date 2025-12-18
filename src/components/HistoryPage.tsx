@@ -129,16 +129,16 @@ export default function HistoryPage() {
               {historyList.map((item) => (
                 <Card key={item.id} className="border-2 border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all">
                   <CardHeader>
-                    <div className="flex items-center gap-2 mb-2 text-gray-600">
+                    <div className="flex items-center justify-between mb-2 text-gray-600">
+                      <div className='flex items-center gap-2'>
                       <Calendar className="w-4 h-4" />
                       <span className="text-sm">{formatDate(item.created_at)}</span>
+                      </div>
                     </div>
-                    <CardTitle className="flex items-center justify-between">
                       <span className="capitalize">{item.palette_name}</span>
-                      <Badge className="bg-gradient-to-r from-pink-500 to-purple-600">
+                      <Badge className="text-white bg-gradient-to-r from-pink-500 to-purple-600">
                         {item.undertone || 'Hasil'}
                       </Badge>
-                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {/* Image Preview */}
