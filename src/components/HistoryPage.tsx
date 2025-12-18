@@ -97,8 +97,9 @@ export default function HistoryPage() {
               </p>
             </div>
             <Link to="/dashboard/analisis">
-              <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
-                Analisis Baru
+              <Button className="bg-gradient-to-r from-pink-500 
+              to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
+                Buat Analisis Baru
               </Button>
             </Link>
           </div>
@@ -139,7 +140,7 @@ export default function HistoryPage() {
                         {item.undertone || 'Hasil'}
                       </Badge>
                       </div>
-                      
+
                       <CardTitle>
                         <span className="capitalize">{item.palette_name}</span>
                       </CardTitle>
