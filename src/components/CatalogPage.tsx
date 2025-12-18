@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import React from 'react';
-import {useRedenominasi, CurrencyDisplay} from 'redenominasi-idr/react'
 import { Card, CardContent } from './ui/card.tsx';
 import { Button } from './ui/button.tsx';
 import { Badge } from './ui/badge.tsx';
@@ -60,6 +58,13 @@ export default function CatalogPage() {
   });
 
   const palettes = ['all', 'winter clear', 'summer cool', 'spring bright', 'autumn warm'];
+
+  const formatRupiah = (value: number) =>
+  new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+  }).format(value);
 
   return (
     <div className="min-h-screen">
@@ -153,7 +158,7 @@ export default function CatalogPage() {
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
                     )}
                     <p className="text-purple-600 mb-4 font-bold">
-                      <CurrencyDisplay value={Number(product.price) || 0} />
+                      {formatRupiah(Number(product.price) || 0)}
                     </p>
 
                         <Button 
