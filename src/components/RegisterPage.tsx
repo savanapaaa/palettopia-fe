@@ -129,12 +129,15 @@ export default function RegisterPage() {
                   id="nomorTelepon"
                   name="nomorTelepon"
                   type="tel"
-                  placeholder="08xx-xxxx-xxxx"
+                  placeholder="08xxxxxxxxxx"
                   value={formData.nomorTelepon}
                   onChange={handleChange}
+                  minLength={10}
+                  maxLength={13}
                   className="border-purple-200 focus:border-purple-400"
                 />
               </div>
+
 
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
@@ -170,6 +173,14 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   className="border-purple-200 focus:border-purple-400"
                 />
+                <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 
+                    hover:text-gray-700"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
               </div>
 
               <Button
