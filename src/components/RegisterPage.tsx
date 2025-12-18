@@ -164,6 +164,7 @@ export default function RegisterPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">Konfirmasi Password</Label>
+                <div className="relative">
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -173,6 +174,7 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   className="border-purple-200 focus:border-purple-400"
                 />
+                </div>
                 <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
