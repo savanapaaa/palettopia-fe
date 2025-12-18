@@ -30,6 +30,17 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [selectedPalette, setSelectedPalette] = useState<string>('all');
 
+  const formatPrice = (price?: number) => {
+  if (!price) return 'Rp.0.00';
+
+  const formatted = price.toLocaleString('id-ID', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  return `Rp.${formatted}`;
+};
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -151,7 +162,7 @@ export default function CatalogPage() {
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
                     )}
                     <p className="text-purple-600 mb-4 font-bold">
-                      Rp {product.price?.toLocaleString('id-ID') || 'N/A'}
+                      {formatPrice(product.price)}
                     </p>
 
                         <Button 
