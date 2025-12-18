@@ -172,10 +172,7 @@ export default function ProfilePage() {
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div>
-                        <CardTitle>Informasi Profil</CardTitle>
-                        <CardDescription>
-                          Kelola informasi akun Anda
-                        </CardDescription>
+                        <CardTitle>Kelola informasi akun Anda</CardTitle>
                       </div>
                       <Button
                         onClick={handleEditToggle}
@@ -234,8 +231,14 @@ export default function ProfilePage() {
                         </Label>
                         <Input
                           id="phone"
+                          type='tel'
                           value={profileData.phone}
-                          onChange={(e) => handleInputChange('phone', e.target.value)}
+                          onChange={(e) => 
+                            handleInputChange(
+                              'phone', 
+                              e.target.value.replace(/\D/g,''))}
+                          minLength={10}
+                          maxLength={13}
                           disabled={!isEditing}
                           className="border-purple-200 focus:border-purple-400"
                         />
@@ -276,9 +279,9 @@ export default function ProfilePage() {
                       <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-3 rounded-lg">
                         <div className="flex items-center gap-2 text-gray-600 mb-1">
                           <Palette className="w-4 h-4" />
-                          <span className="text-xs">Kategori Terakhir</span>
+                          <span className="text-sm">Kategori Terakhir</span>
                         </div>
-                        <p className="text-base font-semibold text-gray-800 capitalize">
+                        <p className="text-xl font-semibold text-gray-800 capitalize">
                           {historyList.length > 0 ? historyList[0].result_palette : '-'}
                           </p>
                       </div>
@@ -286,9 +289,9 @@ export default function ProfilePage() {
                       <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-3 rounded-lg">
                         <div className="flex items-center gap-2 text-gray-600 mb-1">
                           <Calendar className="w-4 h-4" />
-                          <span className="text-xs">Analisis Terakhir</span>
+                          <span className="text-sm">Analisis Terakhir</span>
                         </div>
-                        <p className="text-sm font-medium text-gray-800">
+                        <p className="text-xl font-semibold text-gray-800 capitalize">
                           {historyList.length > 0 ? formatDate(historyList[0].created_at) : '-'}
                         </p>
                       </div>
@@ -343,10 +346,10 @@ export default function ProfilePage() {
                         <CardHeader>
                           <div className="flex items-center gap-2 mb-2 text-gray-600">
                             <Calendar className="w-4 h-4" />
-                            <span className="text-sm">{item.date}</span>
+                            <span className="text-sm">{formatDate(item.created_at)}</span>
                           </div>
                           <CardTitle className="flex items-center justify-between">
-                            <span>{item.category}</span>
+                            <span>{item.result_palette}</span>
                             <Badge className="bg-gradient-to-r from-pink-500 to-purple-600">
                               Hasil
                             </Badge>
@@ -355,7 +358,7 @@ export default function ProfilePage() {
                         <CardContent className="space-y-4">
                           {/* Color Preview */}
                           <div className="grid grid-cols-4 gap-2">
-                            {item.colors.map((color, index) => (
+                            {item.colors?.map((color, index) => (
                               <div
                                 key={index}
                                 className="h-12 rounded border-2 border-gray-200"
@@ -417,10 +420,13 @@ export default function ProfilePage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle className="text-2xl">{selectedHistory.category}</CardTitle>
+                      <CardTitle className="text-2xl">
+                        {selectedHistory.result_palette}
+                      </CardTitle>
+
                       <CardDescription className="flex items-center gap-2 mt-2">
                         <Calendar className="w-4 h-4" />
-                        {selectedHistory.date}
+                        {formatDate(selectedHistory.created_at)}
                       </CardDescription>
                     </div>
                     <Button
@@ -435,7 +441,7 @@ export default function ProfilePage() {
                   <div>
                     <h3 className="text-lg mb-3">Palet Warna</h3>
                     <div className="grid grid-cols-4 gap-3">
-                      {selectedHistory.colors.map((color, index) => (
+                      {selectedHistory.colors?.map((color, index) => (
                         <div key={index} className="text-center">
                           <div
                             className="w-full h-20 rounded-lg border-2 border-gray-200 mb-2"
