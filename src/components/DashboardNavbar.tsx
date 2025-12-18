@@ -61,13 +61,16 @@ export default function DashboardNavbar() {
           {/* PROFILE DROPDOWN */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-            <div
-              className="w-10 h-10 rounded-full 
-              bg-gradient-to-br from-purple-500 to-pink-500
-              flex items-center justify-center
-              shadow-md"
-            >
-              <User className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-2 cursor-pointer">
+              <div
+                className="w-10 h-10 rounded-full 
+                bg-gradient-to-br from-purple-500 to-pink-500
+                flex items-center justify-center
+                shadow-md"
+              >
+                <User className="w-5 h-5 text-white" />
+              </div>
+              <span className="font-medium">{user?.full_name}</span>
             </div>
             </DropdownMenuTrigger>
 
