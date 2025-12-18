@@ -92,7 +92,7 @@ export default function CatalogPage() {
                 </div>
 
                 <Select value={selectedPalette} onValueChange={setSelectedPalette}>
-                  <SelectTrigger className="w-48 md:w-64">
+                  <SelectTrigger className="w-48 md:w-64 capitalize">
                     <SelectValue placeholder="Pilih Palette" />
                   </SelectTrigger>
                   <SelectContent className="bg-white z-50 shadow-lg border capitalize">
