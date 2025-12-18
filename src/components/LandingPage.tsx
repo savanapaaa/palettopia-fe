@@ -308,21 +308,21 @@ export default function LandingPage() {
                 <Sparkles className="w-6 h-6 text-purple-600" />
                 Manfaat Mengetahui Personal Colour
               </h3>
-              <ul className="space-y-3 list-disc list-inside text-gray-600">
+              <ul className="space-y-3 list-disc list-outside pl-5 text-gray-600">
                 <li className="marker:text-purple-600">
-                  <span>Meningkatkan penampilan dan membuat wajah terlihat lebih cerah dan fresh</span>
+                  Meningkatkan penampilan dan membuat wajah terlihat lebih cerah dan fresh
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Menghemat waktu dan uang dengan membeli pakaian yang benar-benar cocok</span>
+                  Menghemat waktu dan uang dengan membeli pakaian yang benar-benar cocok
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Meningkatkan kepercayaan diri dengan tampil maksimal setiap hari</span>
+                  Meningkatkan kepercayaan diri dengan tampil maksimal setiap hari
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Memudahkan dalam memilih makeup dan aksesori yang sesuai</span>
+                  Memudahkan dalam memilih makeup dan aksesori yang sesuai
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Menciptakan lemari pakaian yang lebih kohesif dan mudah di-mix & match</span>
+                  Menciptakan lemari pakaian yang lebih kohesif dan mudah di-mix & match
                 </li>
               </ul>
             </CardContent>
@@ -334,21 +334,21 @@ export default function LandingPage() {
                 <Palette className="w-6 h-6 text-purple-600" />
                 Tips Memilih Warna yang Tepat
               </h3>
-              <ul className="space-y-3 list-disc list-inside text-gray-600">
+              <ul className="space-y-3 list-disc list-outside pl-5 text-gray-600">
                 <li className="marker:text-purple-600">
-                  <span>Perhatikan undertone kulit Anda - hangat (golden) atau dingin (pink)</span>
+                  Perhatikan undertone kulit Anda - hangat (golden) atau dingin (pink)
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Warna yang tepat akan membuat mata Anda terlihat lebih berbinar</span>
+                  Warna yang tepat akan membuat mata Anda terlihat lebih berbinar
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Hindari warna yang membuat kulit terlihat kusam atau keabu-abuan</span>
+                  Hindari warna yang membuat kulit terlihat kusam atau keabu-abuan
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Gunakan analisis profesional untuk hasil yang paling akurat</span>
+                  Gunakan analisis profesional untuk hasil yang paling akurat
                 </li>
                 <li className="marker:text-purple-600">
-                  <span>Jangan takut bereksperimen dengan nuansa berbeda dalam palet Anda</span>
+                  Jangan takut bereksperimen dengan nuansa berbeda dalam palet Anda
                 </li>
               </ul>
             </CardContent>
