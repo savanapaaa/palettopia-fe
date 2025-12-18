@@ -62,7 +62,7 @@ export default function DashboardNavbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
             <div className="flex items-center gap-2 cursor-pointer">
-              <User size={48} />
+              <User size={40} />
               <span>{user?.full_name}</span>
             </div>
             </DropdownMenuTrigger>
