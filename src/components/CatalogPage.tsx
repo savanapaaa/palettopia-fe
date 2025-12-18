@@ -95,7 +95,7 @@ export default function CatalogPage() {
                   <SelectTrigger className="w-48 md:w-64">
                     <SelectValue placeholder="Pilih Palette" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white z-50 shadow-lg border">
+                  <SelectContent className="bg-white z-50 shadow-lg border capitalize">
                     <SelectItem value="all">Semua Palette</SelectItem>
                     {palettes.filter(p => p !== 'all').map(palette => (
                       <SelectItem key={palette} value={palette} className="capitalize">
