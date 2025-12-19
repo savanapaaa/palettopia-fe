@@ -252,7 +252,8 @@ export default function HistoryPage() {
 
                   <div className="flex gap-3">
                     <Link to="/dashboard/katalog" className="flex-1">
-                      <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
+                      <Button className="w-full bg-gradient-to-r 
+                      from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white">
                         Lihat Produk Rekomendasi
                       </Button>
                     </Link>
