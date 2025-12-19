@@ -145,7 +145,7 @@ export default function HistoryPage() {
                         <span className="capitalize">{item.palette_name}</span>
                       </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="bg-white space-y-4">
                     {/* Image Preview */}
                     {item.image_url && (
                       <img 
