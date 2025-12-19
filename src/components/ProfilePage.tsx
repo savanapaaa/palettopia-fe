@@ -350,8 +350,8 @@ export default function ProfilePage() {
                           </div>
                           <CardTitle className="flex items-center justify-between">
                             <span>{item.result_palette}</span>
-                            <Badge className="bg-gradient-to-r from-pink-500 to-purple-600">
-                              Hasil
+                            <Badge className="text-white bg-gradient-to-r from-pink-500 to-purple-600">
+                              {item.undertone || 'Hasil'}
                             </Badge>
                           </CardTitle>
                         </CardHeader>
@@ -416,7 +416,7 @@ export default function ProfilePage() {
           {/* Detail Modal */}
           {selectedHistory && (
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-              <Card className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <Card className="bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
@@ -437,7 +437,7 @@ export default function ProfilePage() {
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="bg-white space-y-6">
                   <div>
                     <h3 className="text-lg mb-3">Palet Warna</h3>
                     <div className="grid grid-cols-4 gap-3">
